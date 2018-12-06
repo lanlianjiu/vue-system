@@ -1,4 +1,9 @@
-import { loginbyUser, logout, getUserInfo } from '@/api/login'
+import {
+  loginbyUser,
+  logout,
+  getUserInfo
+  
+} from '@/api/login'
 import { setToken, removeToken } from '@/utils/auth'
 import Cookies from 'js-cookie'
 import * as types from '../mutaion-types'
@@ -29,14 +34,17 @@ const user = {
     }
   },
   actions: {
+
     loginbyUser({ commit }, { username, password }) {
       return new Promise(async (resolve, reject) => {
         try {
           const response = await loginbyUser(username, password)
-          if (response.data) {
-            commit(types.SET_TOKEN, response.data.token)
-            setToken(response.data.token)
-            Cookies.set('user', username)
+          //  const res = await getMenu()
+          // console.log(res)
+          if (response.status == 200) {
+            commit(types.SET_TOKEN, response.Authorization)
+            setToken(response.Authorization)
+            Cookies.set('user', response.username)
           }
           resolve(response)
         } catch (error) {

@@ -55,6 +55,18 @@ module.exports = {
     port: 8863,
     https: false,
     hotOnly: false,
-    proxy: null
+    proxy: {
+      '/api': {
+        target: 'http://www.devlanlianjiu.xyz',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      },
+      '/mk': {
+        target: 'https://easy-mock.com/mock/5bb49582e8e4196a97f07804/example/',
+        changeOrigin: true
+      }
+    }
   }
 }

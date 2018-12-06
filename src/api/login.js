@@ -6,7 +6,7 @@ export function loginbyUser(username, password) {
     password
   }
   return http({
-    url: '/login/login',
+    url: '/api/admin/user/login',
     method: 'post',
     data
   })
@@ -24,5 +24,12 @@ export function getUserInfo(username) {
     url: '/user/info',
     method: 'get',
     params: { username }
+  })
+}
+
+export function getMenu() {
+  return http({
+    url: 'api/admin/menu/assigned-menu',
+    method: 'get'
   })
 }

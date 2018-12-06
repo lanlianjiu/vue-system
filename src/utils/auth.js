@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-const TokenKey = 'edentoken'
+const TokenKey = 'access-token'
 
 export function getToken() {
   return Cookies.get(TokenKey)

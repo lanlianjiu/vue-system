@@ -12,7 +12,12 @@ const http = axios.create({
 http.interceptors.request.use(
   config => {
     if (store.getters.userInfo.token) {
-      config.headers['eden-token'] = getToken()
+      
+     config.headers['Authorization'] = "Bearer " + getToken();
+    }
+    else {
+
+      config.headers['Authorization'] = "Basic og==";
     }
     return config
   },

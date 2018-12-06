@@ -99,12 +99,12 @@ export default {
     langselect
   },
   mounted() {
-    this.$notify({
-      title: '登陆提示',
-      message: '用户名 admin 密码随意输入',
-      position: 'top-left',
-      duration: 0
-    })
+    // this.$notify({
+    //   title: '登陆提示',
+    //   message: '用户名 admin 密码随意输入',
+    //   position: 'top-left',
+    //   duration: 0
+    // })
   },
   data() {
     const validobj = {
@@ -199,8 +199,10 @@ export default {
               username: username.trim(),
               password: password
             })
+           
             this.loading = false
-            if (response.data) {
+            if (response.status==200) {
+               
               this.$notify.closeAll()
               this.$router.push({ path: '/' })
             } else {
@@ -212,6 +214,7 @@ export default {
               })
             }
           } catch (error) {
+            this.loading = false
             throw new Error(error)
           }
         } else {

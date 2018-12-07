@@ -5,8 +5,7 @@ const Layout = _import('layout/Layout')
 
 Vue.use(VueRouter)
 
-export const constantRouterMap = [
-  {
+export const constantRouterMap = [{
     path: '/401',
     component: _import('errorPage/401'),
     hidden: true
@@ -30,23 +29,23 @@ export const constantRouterMap = [
   {
     path: '',
     component: Layout,
-    redirect: 'dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        name: 'dashboard',
-        component: _import('dashboard/index'),
-        meta: {
-          title: 'dashboard',
-          icon: 'dashboard',
-          noCache: true
-        }
+    redirect: 'home',
+    children: [{
+      path: 'home',
+      name: 'home',
+      component: _import('home/index'),
+      meta: {
+        title: 'home',
+        icon: 'dashboard',
+        noCache: true
       }
-    ]
+    }]
   }
 ]
 
 export const router = new VueRouter({
   routes: constantRouterMap,
-  scrollBehavior: () => ({ y: 0 })
+  scrollBehavior: () => ({
+    y: 0
+  })
 })

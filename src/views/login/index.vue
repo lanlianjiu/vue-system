@@ -1,42 +1,79 @@
 <template>
   <div class="login-page">
     <langselect class="lang" />
-    <el-tooltip class="svg-github" effect="dark" content="Fork Me" placement="bottom">
-      <a href="https://github.com/Sakuyakun/vue-eden"><icon name="github" :scale="2.5"></icon></a>
+    <el-tooltip
+      class="svg-github"
+      effect="dark"
+      content="Fork Me"
+      placement="bottom"
+    >
+      <a href="https://github.com/Sakuyakun/vue-eden">
+        <icon
+          name="github"
+          :scale="2.5"
+        ></icon>
+      </a>
     </el-tooltip>
-    
+
     <div class="login-wrap">
-      <el-col :class="translateLeft" :span="10">
+      <el-col
+        :class="translateLeft"
+        :span="10"
+      >
 
         <div v-if="notforget">
           <div class="logo">
-            <icon name="tree" :scale="8"></icon>
+            <icon
+              name="tree"
+              :scale="8"
+            ></icon>
             <div class="title">
               <a>
                 <span>{{$t('login.edenPart1')}}</span><span class="subtitle">{{$t('login.edenPart2')}}</span>
               </a>
             </div>
           </div>
-        
+
           <div class="login-form">
-            <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
+            <el-form
+              :model="ruleForm"
+              :rules="rules"
+              ref="ruleForm"
+            >
               <el-form-item prop="username">
-                <el-input :placeholder="$t('login.userplaceholder')" v-model="ruleForm.username"></el-input>
+                <el-input
+                  :placeholder="$t('login.userplaceholder')"
+                  v-model="ruleForm.username"
+                ></el-input>
               </el-form-item>
               <el-form-item prop="password">
-                <el-input :placeholder="$t('login.pwdplaceholder')" type="password" v-model="ruleForm.password"></el-input>
+                <el-input
+                  :placeholder="$t('login.pwdplaceholder')"
+                  type="password"
+                  v-model="ruleForm.password"
+                ></el-input>
               </el-form-item>
               <el-form-item class="btn">
-                <el-button :loading="loading" type="primary" @click="handleLogin('ruleForm')">{{$t('login.btn')}}</el-button>
+                <el-button
+                  :loading="loading"
+                  type="primary"
+                  @click="handleLogin('ruleForm')"
+                >{{$t('login.btn')}}</el-button>
               </el-form-item>
             </el-form>
           </div>
 
           <div class="login-footer">
             <el-col :span="12">
-              <el-checkbox v-model="remember" name="type">{{$t('login.remember')}}</el-checkbox>
+              <el-checkbox
+                v-model="remember"
+                name="type"
+              >{{$t('login.remember')}}</el-checkbox>
             </el-col>
-            <el-col class="forgetpwd" :span="12">
+            <el-col
+              class="forgetpwd"
+              :span="12"
+            >
               <span @click="wrapSwitch(false)">{{$t('login.forgetpwd')}}</span>
             </el-col>
           </div>
@@ -49,26 +86,49 @@
             </a>
           </div>
           <div class="forget-form">
-            <el-form :model="forgetForm" ref="forgetRuleForm">
+            <el-form
+              :model="forgetForm"
+              ref="forgetRuleForm"
+            >
               <el-form-item>
-                <el-input :placeholder="$t('login.forget_email')" v-model="forgetForm.email"></el-input>
+                <el-input
+                  :placeholder="$t('login.forget_email')"
+                  v-model="forgetForm.email"
+                ></el-input>
               </el-form-item>
               <el-form-item>
-                <el-input :placeholder="$t('login.forget_code')" v-model="forgetForm.code"></el-input>
+                <el-input
+                  :placeholder="$t('login.forget_code')"
+                  v-model="forgetForm.code"
+                ></el-input>
               </el-form-item>
               <el-form-item>
-                <el-input :placeholder="$t('login.forget_passwrd')" type="password" v-model="forgetForm.newPassword"></el-input>
+                <el-input
+                  :placeholder="$t('login.forget_passwrd')"
+                  type="password"
+                  v-model="forgetForm.newPassword"
+                ></el-input>
               </el-form-item>
               <el-form-item>
-                <el-input :placeholder="$t('login.confirm_passwrd')" type="password" v-model="forgetForm.confirmPassword"></el-input>
+                <el-input
+                  :placeholder="$t('login.confirm_passwrd')"
+                  type="password"
+                  v-model="forgetForm.confirmPassword"
+                ></el-input>
               </el-form-item>
               <el-form-item class="btn">
                 <el-row :gutter="20">
                   <el-col :span="12">
-                    <el-button @click="wrapSwitch(true)" type="primary">{{$t('login.forget_back')}}</el-button>
+                    <el-button
+                      @click="wrapSwitch(true)"
+                      type="primary"
+                    >{{$t('login.forget_back')}}</el-button>
                   </el-col>
                   <el-col :span="12">
-                    <el-button @click="forgetHandle" type="primary">{{$t('login.forget_btn')}}</el-button>
+                    <el-button
+                      @click="forgetHandle"
+                      type="primary"
+                    >{{$t('login.forget_btn')}}</el-button>
                   </el-col>
                 </el-row>
               </el-form-item>
@@ -78,7 +138,10 @@
 
       </el-col>
 
-      <el-col :class="translateRight" :span="14">
+      <el-col
+        :class="translateRight"
+        :span="14"
+      >
         <div class="wallpaper"></div>
       </el-col>
     </div>
@@ -199,10 +262,9 @@ export default {
               username: username.trim(),
               password: password
             })
-           
+
             this.loading = false
-            if (response.status==200) {
-               
+            if (response.status == 200) {
               this.$notify.closeAll()
               this.$router.push({ path: '/' })
             } else {
@@ -231,7 +293,10 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+
+
+<style lang="stylus" scoped>
+@import '../../assets/styl/variables.styl';
 .forget-form,
 .login-form
   .el-form-item__content
@@ -244,108 +309,131 @@ export default {
 .btn button
     width: 100%
     padding 12px 20px
-</style>
+.login-col {
+  height: 100%;
+}
 
-<style lang="stylus" scoped>
-@import "../../assets/styl/variables.styl"
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 
-.login-col
-  height 100%
+  .lang {
+    position: absolute;
+    right: 59px;
+    top: 24px;
+  }
 
-.login-page
-  display flex
-  justify-content center
-  align-items center
-  position absolute
-  height 100%
-  width 100%
-  .lang
-    position absolute
-    right 59px
-    top 24px
-  .svg-github
-    position absolute
-    right 29px
-    top 25px
-  .translate-left
-  .translate-right
-    will-change auto
-    transform translateX(0px)
-    transition transform .6s ease-in-out
-  .switch-left
-    transform translateX(525px)
-  .switch-right
-    transform translateX(-375px)
-  
-.login-wrap
-  overflow hidden
-  width 900px
-  height 400px
-  background white
-  border-radius 4px
-  transform translateY(-10px)
-  box-shadow 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04)
+  .svg-github {
+    position: absolute;
+    right: 29px;
+    top: 25px;
+  }
 
-  .logo
-    padding-top 26px
-    text-align center
+  .translate-left, .translate-right {
+    will-change: auto;
+    transform: translateX(0px);
+    transition: transform 0.6s ease-in-out;
+  }
 
-  .title
-    font-weight bold
-    color main-color
-    padding-top 8px
-    font-size 22px
+  .switch-left {
+    transform: translateX(525px);
+  }
 
-    a
-      cursor cell
-    a:before
-      content '['
-      opacity 0
-      margin-right 10px
-      transform translateX(-10px)
-      transition transform .2s, opacity .2s
+  .switch-right {
+    transform: translateX(-375px);
+  }
+}
 
-    a:after
-      content ']'
-      opacity 0
-      margin-left 10px
-      transform translateX(10px)
-      transition transform .2s, opacity .2s
+.login-wrap {
+  overflow: hidden;
+  width: 900px;
+  height: 400px;
+  background: white;
+  border-radius: 4px;
+  transform: translateY(-10px);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
 
-    a:hover:before
-    a:hover:after
-      opacity 1
-      transform translateX(0)
+  .logo {
+    padding-top: 26px;
+    text-align: center;
+  }
 
-    .subtitle
-      color sub-color
+  .title {
+    font-weight: bold;
+    color: main-color;
+    padding-top: 8px;
+    font-size: 22px;
 
-  .forgetwrap-title
-    padding-top 30px
-    padding-left 15px
+    a {
+      cursor: cell;
+    }
 
-  .forget-form
-    padding 20px 30px 30px
-    padding-bottom 0
+    a:before {
+      content: '[';
+      opacity: 0;
+      margin-right: 10px;
+      transform: translateX(-10px);
+      transition: transform 0.2s, opacity 0.2s;
+    }
 
-  .login-form
-    padding 30px
-    padding-bottom 0
+    a:after {
+      content: ']';
+      opacity: 0;
+      margin-left: 10px;
+      transform: translateX(10px);
+      transition: transform 0.2s, opacity 0.2s;
+    }
 
-  .login-footer
-    padding 0 30px 
-    .forgetpwd
-      text-align right 
-      span
-        cursor pointer
-        font-size 14px
-        font-weight 500
-        color #606266
+    a:hover:before, a:hover:after {
+      opacity: 1;
+      transform: translateX(0);
+    }
 
-  .wallpaper
-    width 100%
-    height 100%
-    background url('../../assets/images/loginwallpaper.jpg')
-    background-size cover
-    position relative
+    .subtitle {
+      color: sub-color;
+    }
+  }
+
+  .forgetwrap-title {
+    padding-top: 30px;
+    padding-left: 15px;
+  }
+
+  .forget-form {
+    padding: 20px 30px 30px;
+    padding-bottom: 0;
+  }
+
+  .login-form {
+    padding: 30px;
+    padding-bottom: 0;
+  }
+
+  .login-footer {
+    padding: 0 30px;
+
+    .forgetpwd {
+      text-align: right;
+
+      span {
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        color: #606266;
+      }
+    }
+  }
+
+  .wallpaper {
+    width: 100%;
+    height: 100%;
+    background: url('../../assets/images/loginwallpaper.jpg');
+    background-size: cover;
+    position: relative;
+  }
+}
 </style>

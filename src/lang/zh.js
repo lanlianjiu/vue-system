@@ -5,7 +5,7 @@ export default {
     closeother: '关闭其他'
   },
   route: {
-    dashboard: '首页',
+    home: '首页',
     widget: '控件',
     permission: '权限控制',
     datatable: '表格',

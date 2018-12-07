@@ -22,7 +22,7 @@ export default {
   },
   login: {
     edenPart1: 'VUE',
-    edenPart2: 'EDEN',
+    edenPart2: 'SYSTEM',
     title: 'Login Form',
     btn: 'Login',
     radioEN: 'English',

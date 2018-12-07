@@ -2,9 +2,11 @@ import {
   loginbyUser,
   logout,
   getUserInfo
-  
 } from '@/api/login'
-import { setToken, removeToken } from '@/utils/auth'
+import {
+  setToken,
+  removeToken
+} from '@/utils/auth'
 import Cookies from 'js-cookie'
 import * as types from '../mutaion-types'
 
@@ -35,12 +37,15 @@ const user = {
   },
   actions: {
 
-    loginbyUser({ commit }, { username, password }) {
+    loginbyUser({
+      commit
+    }, {
+      username,
+      password
+    }) {
       return new Promise(async (resolve, reject) => {
         try {
           const response = await loginbyUser(username, password)
-          //  const res = await getMenu()
-          // console.log(res)
           if (response.status == 200) {
             commit(types.SET_TOKEN, response.Authorization)
             setToken(response.Authorization)
@@ -52,7 +57,10 @@ const user = {
         }
       })
     },
-    logout({ commit, state }) {
+    logout({
+      commit,
+      state
+    }) {
       return new Promise(async (resolve, reject) => {
         try {
           await logout(state.token)
@@ -66,18 +74,27 @@ const user = {
         }
       })
     },
-    felogout({ commit }) {
+    felogout({
+      commit
+    }) {
       return new Promise(resolve => {
         commit(types.SET_TOKEN, '')
         removeToken()
         resolve()
       })
     },
-    getUserInfo({ commit }) {
+    getUserInfo({
+      commit
+    }) {
       return new Promise(async (resolve, reject) => {
         try {
           const response = await getUserInfo(Cookies.get('user'))
-          const { roles, name, avatar, introduction } = response.data
+          const {
+            roles,
+            name,
+            avatar,
+            introduction
+          } = response.data
 
           commit(types.SET_ROLES, roles)
           commit(types.SET_NAME, name)

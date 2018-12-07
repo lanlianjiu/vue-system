@@ -82,7 +82,7 @@
         <div v-else>
           <div class="title forgetwrap-title">
             <a>
-              <span>VUE</span><span class="subtitle">EDEN</span>
+              <span>VUE</span><span class="subtitle">SYSTEM</span>
             </a>
           </div>
           <div class="forget-form">

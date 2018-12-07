@@ -3,7 +3,7 @@
     <div class="left-area">
       <icon class="el-header__icon" name="tree" :scale="4"></icon>
       <span class="el-header__title">
-        VUE<span class="subtitle">EDEN</span>
+        VUE<span class="subtitle">SYSTEM</span>
         <span class="version-wrap">
           {{system_version}}
         </span>

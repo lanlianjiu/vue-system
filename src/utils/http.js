@@ -45,7 +45,7 @@ http.interceptors.response.use(
     return Promise.resolve(res)
   },
   error => {
-
+removeToken()
     tools.notify({
       type: 'error',
       message: error.message,

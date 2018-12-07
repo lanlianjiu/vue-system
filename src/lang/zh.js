@@ -22,7 +22,7 @@ export default {
   },
   login: {
     edenPart1: 'VUE',
-    edenPart2: 'EDEN',
+    edenPart2: 'SYSTEM',
     title: '系统登录',
     btn: '登录',
     radioEN: '英语',

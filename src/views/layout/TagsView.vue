@@ -7,11 +7,11 @@
       <div class="tags-handle">
         <el-dropdown trigger="click" @command="handleCommand">
           <el-button type="primary">
-            {{$t('tags.handle')}}<i class="el-icon-arrow-down el-icon--right"></i>
+            标签操作<i class="el-icon-arrow-down el-icon--right"></i>
           </el-button>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="closeOther">{{$t('tags.closeother')}}</el-dropdown-item>
-            <el-dropdown-item command="closeAll">{{$t('tags.closeall')}}</el-dropdown-item>
+            <el-dropdown-item command="closeOther">关闭所有</el-dropdown-item>
+            <el-dropdown-item command="closeAll">关闭其他</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -29,7 +29,7 @@
           :class="tag.name === currentViewName ? 'el-tag-active' : ''"
           @close="closeView($event, tag, index)"
           @click.native="jumpTo(tag)">
-          {{$t(`route.${tag.name}`)}}
+          {{tag.name}}
         </el-tag>
       </div>
 
@@ -145,9 +145,6 @@ export default {
       }
     },
     getTitle(title) {
-      if (this.$te(`route.${title}`)) {
-        return this.$t(`route.${title}`)
-      }
       return title
     },
     handlescroll(event) {
@@ -191,17 +188,15 @@ export default {
 }
 </script>
 
-<style lang="stylus">
-@import "../../assets/styl/variables.styl"
-
+<style lang="stylus" scoped>
+@import '../../assets/styl/variables.styl'
 .tags-handle
   .el-button--medium
     padding 12px 16px
     border-radius 0
-
 .tags-inner
   .el-tag
-    transition all .3s
+    transition all 0.3s
     border-radius 2px
     cursor pointer
     border 1px solid tag-border
@@ -213,23 +208,18 @@ export default {
     background-color tag-active-bg !important
     color tag-active-color
     .el-icon-close
-      transition all .3s
+      transition all 0.3s
       color tag-active-color
       &:hover
         background-color tag-active-color
         color tag-active-bg
-</style>
-
-<style lang="stylus" scoped>
-@import "../../assets/styl/variables.styl"
-
 .tags-view
   position relative
   z-index 2
   background tags-bar-color
   height 40px
   width 100%
-  box-shadow 0 1px 3px 0 rgba(0, 0, 0, .12), 0 0 3px 0 rgba(0, 0, 0, .04)
+  box-shadow 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04)
   border-top 1px solid #e6e6e6
   box-sizing border-box
   overflow hidden
@@ -249,7 +239,7 @@ export default {
     box-sizing border-box
     text-align center
     background white
-    box-shadow -3px 0 15px 3px rgba(0, 0, 0, .1)
+    box-shadow -3px 0 15px 3px rgba(0, 0, 0, 0.1)
     z-index 10
   .tags-inner
     height 100%
@@ -258,5 +248,5 @@ export default {
     position absolute
     box-sizing border-box
     padding 2px 10px
-    transition left .3s ease
+    transition left 0.3s ease
 </style>

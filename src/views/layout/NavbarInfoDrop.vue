@@ -5,9 +5,9 @@
         {{username}}<i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item command="profile">{{$t('sidebarDropDown.profile')}}</el-dropdown-item>
-        <el-dropdown-item command="lock">{{$t('sidebarDropDown.lock')}}</el-dropdown-item>
-        <el-dropdown-item command="logout">{{$t('sidebarDropDown.logout')}}</el-dropdown-item>
+        <el-dropdown-item command="profile">个人中心</el-dropdown-item>
+        <el-dropdown-item command="lock">锁定系统</el-dropdown-item>
+        <el-dropdown-item command="logout">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
     <div @click="jumpToProfile" class="info-area__avatar">
@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: 'demo',
+  name: 'vue-system',
   data() {
     return {
       username: this.$store.state.user.name,
@@ -48,7 +48,7 @@ export default {
       this.$router.push({
         path: '/lock'
       })
-      this.$message.success(this.$t('lock.locked'))
+      this.$message.success('系统已被锁定！')
     },
     jumpToProfile() {
       this.$router.push({
@@ -63,7 +63,6 @@ export default {
 .inline-block-box
   display inline-block
   vertical-align middle
-
 .info-area
   &__dropdown
     @extend .inline-block-box

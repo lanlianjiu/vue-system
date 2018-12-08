@@ -39,51 +39,37 @@ export default {
   methods: {
     getBreadcrumb() {
       let matched = this.$route.matched.filter(item => item.name)
-      if (matched[0] && matched[0].name !== 'dashboard') {
-        matched = [{ path: '/dashboard', meta: { title: 'dashboard' } }].concat(
-          matched
-        )
+      if (matched[0] && matched[0].name !== '首页') {
+        matched = [{ path: '/首页', meta: { title: '首页' } }].concat(matched)
       }
       this.list = matched
     },
     getTitle(title) {
-      if (this.$te(`route.${title}`)) {
-        return this.$t(`route.${title}`)
-      }
       return title
     }
   }
 }
 </script>
 
-<style lang="stylus">
-.breadcrumb-enter-active,
-.breadcrumb-leave-active
-  transition all .5s
-
-.breadcrumb-enter,
-.breadcrumb-leave-active
+<style lang="stylus" scoped>
+.breadcrumb-enter-active, .breadcrumb-leave-active
+  transition all 0.5s
+.breadcrumb-enter, .breadcrumb-leave-active
   opacity 0
   transform translateX(20px)
-
 .breadcrumb-move
-  transition all .5s
-
+  transition all 0.5s
 .breadcrumb-leave-active
   position absolute
-</style>
-
-
-<style lang="stylus" scoped>
 .eden-breadcrumb
   display inline-block
   min-width 50px
   line-height 60px
-  .el-breadcrumb 
+  .el-breadcrumb
     display inline-block
     font-size 14px
     line-height 60px
     margin-left 10px
     .no-redirect
-      cursor: text
+      cursor text
 </style>

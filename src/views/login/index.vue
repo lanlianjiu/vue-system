@@ -1,20 +1,6 @@
 <template>
   <div class="login-page">
-    <langselect class="lang" />
-    <el-tooltip
-      class="svg-github"
-      effect="dark"
-      content="Fork Me"
-      placement="bottom"
-    >
-      <a href="https://github.com/Sakuyakun/vue-eden">
-        <icon
-          name="github"
-          :scale="2.5"
-        ></icon>
-      </a>
-    </el-tooltip>
-
+    
     <div class="login-wrap">
       <el-col
         :class="translateLeft"
@@ -29,7 +15,7 @@
             ></icon>
             <div class="title">
               <a>
-                <span>{{$t('login.edenPart1')}}</span><span class="subtitle">{{$t('login.edenPart2')}}</span>
+                <span>VUE</span><span class="subtitle">SYSTEM</span>
               </a>
             </div>
           </div>
@@ -38,27 +24,25 @@
             <el-form
               :model="ruleForm"
               :rules="rules"
-              ref="ruleForm"
-            >
+              ref="ruleForm">
               <el-form-item prop="username">
                 <el-input
-                  :placeholder="$t('login.userplaceholder')"
+                  :placeholder="login.userplaceholder"
                   v-model="ruleForm.username"
                 ></el-input>
               </el-form-item>
               <el-form-item prop="password">
                 <el-input
-                  :placeholder="$t('login.pwdplaceholder')"
+                  :placeholder="login.pwdplaceholder"
                   type="password"
-                  v-model="ruleForm.password"
-                ></el-input>
+                  v-model="ruleForm.password">
+                </el-input>
               </el-form-item>
               <el-form-item class="btn">
                 <el-button
                   :loading="loading"
                   type="primary"
-                  @click="handleLogin('ruleForm')"
-                >{{$t('login.btn')}}</el-button>
+                  @click="handleLogin('ruleForm')">登录</el-button>
               </el-form-item>
             </el-form>
           </div>
@@ -68,13 +52,13 @@
               <el-checkbox
                 v-model="remember"
                 name="type"
-              >{{$t('login.remember')}}</el-checkbox>
+              >记住我</el-checkbox>
             </el-col>
             <el-col
               class="forgetpwd"
               :span="12"
             >
-              <span @click="wrapSwitch(false)">{{$t('login.forgetpwd')}}</span>
+              <span @click="wrapSwitch(false)">忘记密码</span>
             </el-col>
           </div>
         </div>
@@ -92,26 +76,26 @@
             >
               <el-form-item>
                 <el-input
-                  :placeholder="$t('login.forget_email')"
+                  :placeholder="login.forget_email"
                   v-model="forgetForm.email"
                 ></el-input>
               </el-form-item>
               <el-form-item>
                 <el-input
-                  :placeholder="$t('login.forget_code')"
+                  :placeholder="login.forget_code"
                   v-model="forgetForm.code"
                 ></el-input>
               </el-form-item>
               <el-form-item>
                 <el-input
-                  :placeholder="$t('login.forget_passwrd')"
+                  :placeholder="login.forget_passwrd"
                   type="password"
                   v-model="forgetForm.newPassword"
                 ></el-input>
               </el-form-item>
               <el-form-item>
                 <el-input
-                  :placeholder="$t('login.confirm_passwrd')"
+                  :placeholder="login.confirm_passwrd"
                   type="password"
                   v-model="forgetForm.confirmPassword"
                 ></el-input>
@@ -122,13 +106,13 @@
                     <el-button
                       @click="wrapSwitch(true)"
                       type="primary"
-                    >{{$t('login.forget_back')}}</el-button>
+                    >返回</el-button>
                   </el-col>
                   <el-col :span="12">
                     <el-button
                       @click="forgetHandle"
                       type="primary"
-                    >{{$t('login.forget_btn')}}</el-button>
+                    >重置</el-button>
                   </el-col>
                 </el-row>
               </el-form-item>
@@ -149,7 +133,6 @@
 </template>
 
 <script>
-import langselect from '@/components/langselect'
 import storage from '@/utils/storage'
 
 const useRegexp = {
@@ -158,9 +141,7 @@ const useRegexp = {
 
 export default {
   name: 'login',
-  components: {
-    langselect
-  },
+  components: {},
   mounted() {
     // this.$notify({
     //   title: '登陆提示',
@@ -171,10 +152,8 @@ export default {
   },
   data() {
     const validobj = {
-      username: [
-        { ruleName: 'exist', error: this.$t('login.valid.userexist') }
-      ],
-      password: [{ ruleName: 'exist', error: this.$t('login.valid.pwdexist') }]
+      username: [{ ruleName: 'exist', error: '用户名为空！' }],
+      password: [{ ruleName: 'exist', error: '密码为空！' }]
     }
 
     const _typeof = val =>
@@ -202,7 +181,14 @@ export default {
     }
 
     return {
-      lang: this.$store.state.app.language,
+      login: {
+        userplaceholder: '请输入用户名',
+        pwdplaceholder: '请输入密码',
+        forget_email: '请输入邮箱',
+        forget_code: '请输入验证码',
+        forget_passwrd: '请输入新密码',
+        confirm_passwrd: '请输入确认密码'
+      },
       ruleForm: {
         username: storage.get('loginUser') || 'admin',
         password: ''
@@ -281,12 +267,12 @@ export default {
           }
         } else {
           this.loading = false
-          this.$message.error(this.$t('login.validfaild'))
+          this.$message.error('登陆校验未通过，是不是哪里出问题了？')
         }
       })
     },
     forgetHandle() {
-      this.$message.success(this.$t('login.pwdChanged'))
+      this.$message.success('密码重置成功！')
       this.wrapSwitch(true)
     }
   }
@@ -296,144 +282,99 @@ export default {
 
 
 <style lang="stylus" scoped>
-@import '../../assets/styl/variables.styl';
-.forget-form,
-.login-form
+@import '../../assets/styl/variables.styl'
+.forget-form, .login-form
   .el-form-item__content
     line-height 40px
   .el-input__inner
-    padding-top: 2px;
+    padding-top 2px
     height 40px
     line-height 40px
-
 .btn button
-    width: 100%
-    padding 12px 20px
-.login-col {
-  height: 100%;
-}
-
-.login-page {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-
-  .lang {
-    position: absolute;
-    right: 59px;
-    top: 24px;
-  }
-
-  .svg-github {
-    position: absolute;
-    right: 29px;
-    top: 25px;
-  }
-
-  .translate-left, .translate-right {
-    will-change: auto;
-    transform: translateX(0px);
-    transition: transform 0.6s ease-in-out;
-  }
-
-  .switch-left {
-    transform: translateX(525px);
-  }
-
-  .switch-right {
-    transform: translateX(-375px);
-  }
-}
-
-.login-wrap {
-  overflow: hidden;
-  width: 900px;
-  height: 400px;
-  background: white;
-  border-radius: 4px;
-  transform: translateY(-10px);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
-
-  .logo {
-    padding-top: 26px;
-    text-align: center;
-  }
-
-  .title {
-    font-weight: bold;
-    color: main-color;
-    padding-top: 8px;
-    font-size: 22px;
-
-    a {
-      cursor: cell;
-    }
-
-    a:before {
-      content: '[';
-      opacity: 0;
-      margin-right: 10px;
-      transform: translateX(-10px);
-      transition: transform 0.2s, opacity 0.2s;
-    }
-
-    a:after {
-      content: ']';
-      opacity: 0;
-      margin-left: 10px;
-      transform: translateX(10px);
-      transition: transform 0.2s, opacity 0.2s;
-    }
-
-    a:hover:before, a:hover:after {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .subtitle {
-      color: sub-color;
-    }
-  }
-
-  .forgetwrap-title {
-    padding-top: 30px;
-    padding-left: 15px;
-  }
-
-  .forget-form {
-    padding: 20px 30px 30px;
-    padding-bottom: 0;
-  }
-
-  .login-form {
-    padding: 30px;
-    padding-bottom: 0;
-  }
-
-  .login-footer {
-    padding: 0 30px;
-
-    .forgetpwd {
-      text-align: right;
-
-      span {
-        cursor: pointer;
-        font-size: 14px;
-        font-weight: 500;
-        color: #606266;
-      }
-    }
-  }
-
-  .wallpaper {
-    width: 100%;
-    height: 100%;
-    background: url('../../assets/images/loginwallpaper.jpg');
-    background-size: cover;
-    position: relative;
-  }
-}
+  width 100%
+  padding 12px 20px
+.login-col
+  height 100%
+.login-page
+  display flex
+  justify-content center
+  align-items center
+  position absolute
+  height 100%
+  width 100%
+  .lang
+    position absolute
+    right 59px
+    top 24px
+  .svg-github
+    position absolute
+    right 29px
+    top 25px
+  .translate-left, .translate-right
+    will-change auto
+    transform translateX(0px)
+    transition transform 0.6s ease-in-out
+  .switch-left
+    transform translateX(525px)
+  .switch-right
+    transform translateX(-375px)
+.login-wrap
+  overflow hidden
+  width 900px
+  height 400px
+  background white
+  border-radius 4px
+  transform translateY(-10px)
+  box-shadow 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04)
+  .logo
+    padding-top 26px
+    text-align center
+  .title
+    font-weight bold
+    color main-color
+    padding-top 8px
+    font-size 22px
+    a
+      cursor cell
+    a:before
+      content '['
+      opacity 0
+      margin-right 10px
+      transform translateX(-10px)
+      transition transform 0.2s, opacity 0.2s
+    a:after
+      content ']'
+      opacity 0
+      margin-left 10px
+      transform translateX(10px)
+      transition transform 0.2s, opacity 0.2s
+    a:hover:before, a:hover:after
+      opacity 1
+      transform translateX(0)
+    .subtitle
+      color sub-color
+  .forgetwrap-title
+    padding-top 30px
+    padding-left 15px
+  .forget-form
+    padding 20px 30px 30px
+    padding-bottom 0
+  .login-form
+    padding 30px
+    padding-bottom 0
+  .login-footer
+    padding 0 30px
+    .forgetpwd
+      text-align right
+      span
+        cursor pointer
+        font-size 14px
+        font-weight 500
+        color #606266
+  .wallpaper
+    width 100%
+    height 100%
+    background url('../../assets/images/loginwallpaper.jpg')
+    background-size cover
+    position relative
 </style>

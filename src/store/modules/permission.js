@@ -10,14 +10,12 @@ import {
 } from '@/api/login'
 import _import from '@/utils/import'
 const Layout = _import('layout/Layout')
-const resArray = []
+
 const filterAsyncRouter = (asyncRouterMap) => {
 
   asyncRouterMap.forEach(function (value, index) {
 
     let old_path = value.path;
-    
-    
 
     if (value.parent) {
       let onestr = (value.path).slice(((value.path).indexOf("/")) + 1)
@@ -28,18 +26,17 @@ const filterAsyncRouter = (asyncRouterMap) => {
 
       value.component = Layout;
       filterAsyncRouter(value.children, value.path);
-    }else{
-     
+    } else {
+
       let p_path = (old_path).slice(((old_path).indexOf("/")) + 1);
-       console.log(p_path)
-       console.log(value.path)
+
       value.component = _import(p_path);
     }
-   
+
   });
-   
+
   return asyncRouterMap
-  
+
 }
 
 const permission = {
@@ -58,14 +55,14 @@ const permission = {
       commit
     }, roles) {
       return new Promise(async (resolve, reject) => {
-        
+
         let routers = null
         const response = await getMenu()
-        routers = filterAsyncRouter(response,null);
-       if (routers) {
-         commit(types.SET_ROUTERS, routers)
-         resolve()
-       }
+        routers = filterAsyncRouter(response, null);
+        if (routers) {
+          commit(types.SET_ROUTERS, routers)
+          resolve()
+        }
       })
     }
   }

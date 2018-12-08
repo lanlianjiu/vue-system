@@ -26,7 +26,6 @@
     </div>
 
     <div class="right-area">
-      <lang-select class="lang" />
       <notice />
       <fullscreen class="fullscreen" />
       <infodrop />
@@ -37,7 +36,6 @@
 <script>
 import fullscreen from '@/components/fullscreen'
 import notice from '@/components/notice'
-import langselect from '@/components/langselect'
 import infodrop from './NavbarInfoDrop'
 import seamlessList from '@/components/seamlessList'
 import breadcrumb from '@/components/breadcrumb'
@@ -50,7 +48,6 @@ export default {
     notice,
     infodrop,
     breadcrumb,
-    'lang-select': langselect,
     'seamless-list': seamlessList
   },
   mounted() {
@@ -64,15 +61,15 @@ export default {
       messageList: [
         {
           date: dayjs().format('YYYY-MM-DD'),
-          msg: this.$t('msg.msg1')
+          msg: '你有一条来自管理员的新消息。'
         },
         {
           date: dayjs().format('YYYY-MM-DD'),
-          msg: this.$t('msg.msg2')
+          msg: '查看本周伊甸园系统的监控汇报。'
         },
         {
           date: dayjs().format('YYYY-MM-DD'),
-          msg: this.$t('msg.msg3')
+          msg: '伊甸园有一些新的升级，来一起看看吧。'
         }
       ]
     }
@@ -86,21 +83,16 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import "../../assets/styl/variables.styl"
-
+@import '../../assets/styl/variables.styl'
 right-area-width = 250px
-
 .el-header
   position relative
-
   .sidebar-wrap
     display flex
-
   .left-area
     min-width 240px
     padding-left 12px
     box-sizing border-box
-  
   .middle-area
     height 60px
     flex 1
@@ -113,7 +105,7 @@ right-area-width = 250px
         cursor pointer
         height 100%
         padding 0 15px
-        transition color .28s
+        transition color 0.28s
         &:hover
           color #41b883
     &__msglist
@@ -129,22 +121,18 @@ right-area-width = 250px
       clear both
       display block
       width 100%
-
   .right-area
     {flex-center}
     padding-right 16px
     height 60px
     min-width right-area-width
     .fullscreen
-      height: 100%
-      padding: 0 22px
+      height 100%
+      padding 0 22px
     .lang
       height 60px
-
-  &__title
-  &__icon
+  &__title, &__icon
     vertical-align middle
-
   &__title
     font-size 20px
     font-weight bold

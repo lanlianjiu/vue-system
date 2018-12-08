@@ -7,7 +7,7 @@
     </el-carousel>
     <div class="lock-container">
       <div class="lock-container__box">
-        <h1><span>{{$t('app.unlock')}} {{$t('login.edenPart1')}}</span><span class="subtitle">{{$t('login.edenPart2')}}</span></h1>
+        <h1><span>解锁 VUE</span><span class="subtitle">SYSTEM</span></h1>
         <el-input v-model="pwd" placeholder="Enter Password"></el-input>
         <el-button class="btn" @click="unlock">unlock</el-button>
       </div>
@@ -32,7 +32,7 @@ export default {
       if (this.pwd === '') {
         this.$message.error('Please Enter Password!')
       } else {
-        this.$message.success(this.$t('lock.unlock'))
+        this.$message.success('系统已解锁成功！')
         this.$store.dispatch('setLockState', 'unlock')
         this.$router.push('/')
       }
@@ -46,7 +46,6 @@ export default {
   width 100%
   height 100%
   overflow hidden
-
 .lock-container
   width 100%
   height 50%
@@ -62,7 +61,6 @@ export default {
       width 100%
     .subtitle
       color #374b63
-  
 .el-carousel__item
   display flex
   align-items center

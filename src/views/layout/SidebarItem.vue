@@ -85,9 +85,6 @@ export default {
       return children.filter(item => !item.hidden).length === 1
     },
     getTitle(title) {
-      if (this.$te(`route.${title}`)) {
-        return this.$t(`route.${title}`)
-      }
       return title
     }
   }
@@ -96,12 +93,11 @@ export default {
 
 <style lang="stylus" scoped>
 .sidebar-wrap
-  .el-submenu,
-  .el-menu-item
+  .el-submenu, .el-menu-item
     font-size 0
     svg
       margin-right 17px
-    span 
+    span
       font-size 14px
   .svg-icon
     fill currentColor

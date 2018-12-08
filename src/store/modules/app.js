@@ -5,7 +5,7 @@ import * as types from '../mutaion-types'
 const app = {
   state: {
     firstLogin: storage.get('firstLogin') || 'yep',
-    version: 'Alpha 1.0',
+    version: '1.0',
     language: Cookies.get('language') || 'zh',
     sidebar: {
       sliderState: storage.get('sliderState')
@@ -31,23 +31,33 @@ const app = {
     }
   },
   actions: {
-    toggleSideBar({ commit }) {
+    toggleSideBar({
+      commit
+    }) {
       let state = ''
-      storage.get('sliderState') === 'full'
-        ? (state = 'collapse')
-        : (state = 'full')
+      storage.get('sliderState') === 'full' ?
+        (state = 'collapse') :
+        (state = 'full')
       commit(types.SET_SLIDERSTATE, state)
     },
-    setLanguage({ commit }, language) {
+    setLanguage({
+      commit
+    }, language) {
       commit(types.SET_LANGUAGE, language)
     },
-    setFirstLogin({ commit }) {
+    setFirstLogin({
+      commit
+    }) {
       commit(types.SET_FIRSTLOGIN)
     },
-    setSliderState({ commit }, newSliderState) {
+    setSliderState({
+      commit
+    }, newSliderState) {
       commit(types.SET_SLIDERSTATE, newSliderState)
     },
-    setLockState({ commit }, lockstate) {
+    setLockState({
+      commit
+    }, lockstate) {
       commit(types.SET_LOCK_STATE, lockstate)
     }
   }

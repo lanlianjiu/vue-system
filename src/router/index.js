@@ -32,10 +32,10 @@ export const constantRouterMap = [{
     redirect: 'home',
     children: [{
       path: 'home',
-      name: 'home',
+      name: '首页',
       component: _import('home/index'),
       meta: {
-        title: 'home',
+        title: '首页',
         icon: 'dashboard',
         noCache: true
       }

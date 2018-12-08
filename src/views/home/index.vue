@@ -51,7 +51,7 @@
       <el-col :sm="24" :lg="6">
         <el-card shadow="hover" class="todo-wrap">
           <div slot="header" class="todo-header">
-            <span>{{$t('dashboard.todo')}}</span>
+            <span>待办事项</span>
             <div class="enterTodo">
               <el-input @keyup.enter.native="addTasks" v-model="newTasks" placeholder="need to do"></el-input>
             </div>
@@ -74,7 +74,7 @@
       <el-col :sm="24" :lg="12">
         <el-card shadow="hover" class="system-report">
           <div slot="header" class="report-header">
-            <span class="">{{$t('dashboard.sr')}}</span>
+            <span class="">系统报告</span>
           </div>
           <div class="report-content">
             <el-alert
@@ -112,7 +112,7 @@
       <el-col :sm="24" :lg="12">
         <el-card shadow="hover" class="pie-wrap">
           <div slot="header" class="pie-header">
-            <span class="">{{$t('dashboard.pch')}}</span>
+            <span class="">占比统计</span>
           </div>
           <pie-chart :chart-data="pieChartData" :legend-data="pieLegendData"></pie-chart>
         </el-card>

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Element from 'element-ui';
 import scroll from 'vue-seamless-scroll';
-//import Icon from 'vue-svg-icon/Icon.vue';
+import Icon from 'vue-svg-icon/Icon.vue';
 // 引入vue-awesome
 // import Icon from 'vue-awesome/components/Icon';
 // import 'vue-awesome/icons/index.js'

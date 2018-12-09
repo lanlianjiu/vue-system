@@ -36,7 +36,7 @@ export const constantRouterMap = [{
       component: _import('home/index'),
       meta: {
         title: '首页',
-        icon: 'dashboard',
+        icon: 'home',
         noCache: true
       }
     }]

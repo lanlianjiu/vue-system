@@ -6,7 +6,17 @@
 
 <script>
 export default {
-  name: 'widget'
+  name: 'widget',
+  computed: {
+    asideWidth() {
+     this.$api.get("api/admin/menu/assigned-menu",{}).then(res => {
+    return res;
+     })
+     .catch(error => {
+        return error;
+      })
+    }
+  }
 }
 </script>
 

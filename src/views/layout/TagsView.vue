@@ -117,7 +117,7 @@ export default {
           this.currentViewName = prevTag.name
         } else {
           this.$router.push('/')
-          this.currentViewName = 'dashboard'
+          this.currentViewName = '首页'
         }
       }
     },
@@ -127,6 +127,7 @@ export default {
       )
     },
     jumpTo(tag) {
+      
       this.$router.push(tag.path)
       this.currentViewName = tag.name
     },

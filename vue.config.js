@@ -11,7 +11,9 @@ module.exports = {
   baseUrl: process.env.baseUrl,
   outputDir: process.env.outputDir,
   lintOnSave: true,
-
+  transpileDependencies: [
+   /\bvue-awesome\b/
+  ],
   configureWebpack: config => {
     if (process.env.NODE_ENV === 'production') {
       // 为生产环境修改配置...

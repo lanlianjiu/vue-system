@@ -69,10 +69,7 @@ http.interceptors.response.use(
         case 401:
           
          router.push({
-           path: '/login',
-           query: {
-             redirect: router.currentRoute.fullPath
-           }
+           path: '/login'
          });
           break;
 
@@ -91,12 +88,9 @@ http.interceptors.response.use(
           removeToken();
           // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面
           setTimeout(() => {
-            router.push({
-              path: '/login',
-              query: {
-                redirect: router.currentRoute.fullPath
-              }
-            });
+           router.push({
+             path: '/login'
+           });
           }, 1000);
           break;
 

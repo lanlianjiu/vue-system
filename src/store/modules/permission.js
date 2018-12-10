@@ -17,6 +17,10 @@ const filterAsyncRouter = (asyncRouterMap) => {
 
     let old_path = value.path;
 
+    if (value.meta.redirect) {
+      value.redirect = value.meta.redirect
+    }
+
     if (value.parent) {
       let onestr = (value.path).slice(((value.path).indexOf("/")) + 1)
       value.path = (onestr).slice(((onestr).indexOf("/")) + 1)
@@ -58,7 +62,7 @@ const permission = {
 
         let routers = null
         const response = await getMenu()
-        routers = filterAsyncRouter(response, null);
+        routers = filterAsyncRouter(response);
         if (routers) {
           commit(types.SET_ROUTERS, routers)
           resolve()

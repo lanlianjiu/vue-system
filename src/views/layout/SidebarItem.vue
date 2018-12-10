@@ -81,8 +81,19 @@ export default {
     }
   },
   methods: {
+    fiterShow: function(data) {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].meta.openself) {
+          return true
+        } else {
+          return false
+        }
+      }
+    },
     onlyOneShowingChildren(children) {
-      return children.filter(item => !item.hidden).length === 1
+      return children.filter(item => !item.hidden).length > 1
+        ? false
+        : this.fiterShow(children)
     },
     getTitle(title) {
       return title

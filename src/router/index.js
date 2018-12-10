@@ -29,7 +29,7 @@ export const constantRouterMap = [{
   {
     path: '',
     component: Layout,
-    redirect: 'home',
+    redirect: 'noredirect',
     children: [{
       path: 'home',
       name: '首页',
@@ -37,7 +37,8 @@ export const constantRouterMap = [{
       meta: {
         title: '首页',
         icon: 'home',
-        noCache: true
+        noCache: true,
+        openself: true,
       }
     }]
   }

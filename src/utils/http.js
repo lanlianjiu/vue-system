@@ -1,11 +1,11 @@
 import axios from 'axios'
-import store from '@/store'
+//import store from '@/store'
 import {
   getToken,
   removeToken
 } from '@/utils/auth'
 import * as tools from './tools'
-import Cookies from 'js-cookie'
+//import Cookies from 'js-cookie'
 const http = axios.create({
   baseURL: '',
   timeout: 30000
@@ -29,7 +29,7 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   response => {
     const res = response.data
-   
+
     if (res.error) {
       tools.notify({
         type: 'error',

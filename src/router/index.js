@@ -27,9 +27,9 @@ export const constantRouterMap = [{
     hidden: true
   },
   {
-    path: '/',
+    path: '',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'home',
     children: [{
       path: 'home',
       name: '首页',

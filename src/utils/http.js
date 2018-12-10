@@ -5,7 +5,7 @@ import {
   removeToken
 } from '@/utils/auth'
 import * as tools from './tools'
-//import Cookies from 'js-cookie'
+
 const http = axios.create({
   baseURL: '',
   timeout: 30000
@@ -60,11 +60,10 @@ http.interceptors.response.use(
           // 未登录则跳转登录页面，并携带当前页面的路径
           // 在登录成功后返回当前页面，这一步需要在登录页操作。
         case 401:
+          console.log(error.response.status);
+
           router.replace({
-            path: '/login',
-            query: {
-              redirect: router.currentRoute.fullPath
-            }
+            path: '/login'
           });
           break;
 

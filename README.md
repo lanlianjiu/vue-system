@@ -76,6 +76,31 @@ vue-eden 是一个美观的后台管理系统模板，简称 Eden（伊甸园）
 └── vue.config.js      vue-cli3 配置文件
 ```
 
+##接口代理
+项目根目录下
+vue.config.js中devServer对象
+```
+
+devServer: {
+   .
+   .
+   .
+    proxy: {
+      '/api': {
+        target: 'http://www.devlanlianjiu.xyz', //换成自己本地请求地址
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+   .
+   .
+   .
+  
+}
+
+```
+
 ## 启动
 
 执行 serve 脚本将自动启动 http://localhost:8863

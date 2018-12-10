@@ -1,16 +1,22 @@
 import axios from 'axios'
-//import store from '@/store'
+import store from '@/store'
+import {
+  router
+} from '@/router'
 import {
   getToken,
   removeToken
 } from '@/utils/auth'
 import * as tools from './tools'
-
+import {
+  Loading,
+  Message
+} from 'element-ui'
 const http = axios.create({
   baseURL: '',
   timeout: 30000
 })
-
+const self = this
 // request 拦截器
 http.interceptors.request.use(
   config => {
@@ -18,6 +24,7 @@ http.interceptors.request.use(
 
       config.headers['Authorization'] = "Bearer " + getToken();
     }
+    
     return config
   },
   error => {
@@ -29,7 +36,7 @@ http.interceptors.request.use(
 http.interceptors.response.use(
   response => {
     const res = response.data
-
+    
     if (res.error) {
       tools.notify({
         type: 'error',
@@ -60,11 +67,13 @@ http.interceptors.response.use(
           // 未登录则跳转登录页面，并携带当前页面的路径
           // 在登录成功后返回当前页面，这一步需要在登录页操作。
         case 401:
-          console.log(error.response.status);
-
-          router.replace({
-            path: '/login'
-          });
+          
+         router.push({
+           path: '/login',
+           query: {
+             redirect: router.currentRoute.fullPath
+           }
+         });
           break;
 
           // 403 token过期
@@ -82,7 +91,7 @@ http.interceptors.response.use(
           removeToken();
           // 跳转登录页面，并将要浏览的页面fullPath传过去，登录成功后跳转需要访问的页面
           setTimeout(() => {
-            router.replace({
+            router.push({
               path: '/login',
               query: {
                 redirect: router.currentRoute.fullPath
